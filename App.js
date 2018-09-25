@@ -1,12 +1,39 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
+// import { connect } from 'react-redux'
+// import { addNote, removeNote } from './actions/index'
 
-export default class App extends React.Component {
+class App extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      input: '',
+      noteTitle: ''
+    }
+  }
+
+  handleSubmit = () => {
+    this.setState({
+      noteTitle: this.state.input
+    }, () => console.log(this.state))
+  }
+
+  handleChange = (text) => {
+    this.setState({
+      input: text
+    })
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text>cash me ouside...</Text>
-        <Text>how bout dah?</Text>
+        <Text>Add a Note!</Text>
+        <TextInput 
+          placeholder="do it..."
+          onSubmitEditing={this.handleSubmit}
+          onChangeText={this.handleChange}
+          value={this.state.input}
+        />
       </View>
     );
   }
@@ -20,3 +47,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+// const mapStateToProps = (state) => {
+//   return {
+//     notes: state.notes
+//   }
+// }
+
+export default App
+// export default connect(mapStateToProps, { addNote, removeNote })(App)
