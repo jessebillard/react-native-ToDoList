@@ -2,9 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import Title from './components/Title';
 import List from './components/List';
-// import Footer from './components/Footer';
-// import { connect } from 'react-redux'
-// import { addNote, removeNote } from './actions/index'
 
 const styles = StyleSheet.create({
   container: {
@@ -48,7 +45,7 @@ class App extends React.Component {
     this.setState({
       notes: [newNote, ...this.state.notes],
       input: ''
-    }, () => console.log(this.state))
+    })
   }
 
   handleChange = (text) => {
@@ -58,11 +55,20 @@ class App extends React.Component {
   }
 
   removeCompleted = () => {
-    console.log('brah')
+    const notesCopy = [...this.state.notes]
+    const filteredNotes = notesCopy.filter(note => !note.isToggled)
+    this.setState({
+      notes: filteredNotes
+    })
   }
 
   toggleItemCompleted = (index) => {
-    console.log("index", index)
+    const notesCopy = [...this.state.notes]
+    const updatedNote = notesCopy.find((note, noteIndex) => index === noteIndex )
+    updatedNote.isToggled = !updatedNote.isToggled
+    this.setState({
+      notes: notesCopy
+    }, () => console.log(this.state))
   }
 
   render() {
@@ -88,11 +94,4 @@ class App extends React.Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     notes: state.notes
-//   }
-// }
-
 export default App
-// export default connect(mapStateToProps, { addNote, removeNote })(App)
