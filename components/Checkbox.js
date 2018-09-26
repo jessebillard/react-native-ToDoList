@@ -15,8 +15,7 @@ const styles = StyleSheet.create({
     },
 })
 
-const Checkbox = (props) => {
-    console.log(props)
+const Checkbox = (props) => {    
     return (
         <TouchableOpacity onPress={() => props.onToggleCompleted(props.index)}>
             <View style={styles.box}>

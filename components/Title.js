@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import { Header, Title, Right, Body } from 'native-base'
 
 const styles = StyleSheet.create({
     header: {
@@ -7,17 +8,19 @@ const styles = StyleSheet.create({
         padding: 15
     },
     title: {
-        textAlign: 'center',
-        color: 'white'
+        textAlign: 'center',        
     }
 })
 
-const Title = () => {
+const MyTitle = () => {
     return (
-        <View style={styles.header}>
-            <Text style={styles.title}>Todo Listo</Text>
-        </View>
+        <Header>          
+            <Body>
+                <Title style={styles.title}>Todo Listo</Title>
+            </Body>  
+            {/* <Right/>           */}
+        </Header>        
     )
 }
 
-export default Title
+export default MyTitle

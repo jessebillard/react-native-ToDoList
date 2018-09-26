@@ -1,5 +1,6 @@
 import React from 'react'
 import { Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { Footer } from 'native-base'
 
 const styles = StyleSheet.create({
     footer: {
@@ -13,9 +14,11 @@ const styles = StyleSheet.create({
 
 const Footer = (props) => {
     return (
-        <TouchableOpacity style={styles.footer}>
-            <Text style={styles.remove}>Remove Completed Items</Text>
-        </TouchableOpacity>
+        <Footer>
+            <TouchableOpacity>
+                <Text style={styles.remove}>Remove Completed Items</Text>
+            </TouchableOpacity>
+        </Footer>
     )
 }
 

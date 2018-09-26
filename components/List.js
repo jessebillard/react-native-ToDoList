@@ -30,9 +30,7 @@ const styles = StyleSheet.create({
 })
 
 class List extends React.Component {
-
-    render() {
-        console.log(this.props)
+    render() {        
         return (
             <ScrollView>
                 {this.props.notes.map((note, i) => {
@@ -40,7 +38,10 @@ class List extends React.Component {
                         <View key={i} style={styles.item}>
                             <Text>{note.title}</Text>
                             <View style={styles.rightSection}>
-                                <Checkbox index={i} onToggleCompleted={this.props.onToggleCompleted} isToggled={note.isToggled} />
+                                <Checkbox index={i} 
+                                    onToggleCompleted={this.props.onToggleCompleted} 
+                                    isToggled={note.isToggled} 
+                                />
                             </View>
                         </View>
                     )

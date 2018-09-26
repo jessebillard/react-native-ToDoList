@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
-import Title from './components/Title';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import MyTitle from './components/Title';
 import List from './components/List';
+import { Container, Input, Item } from 'native-base'
 
 const styles = StyleSheet.create({
   container: {
@@ -10,8 +11,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  input: {
-    height: 50,
+  input: {   
     padding: 15,
     margin: 25
   },
@@ -37,15 +37,29 @@ class App extends React.Component {
     }
   }
 
-  handleSubmit = () => {
-    const newNote = {
-      title: this.state.input,
-      isToggled: false
+  handleSubmit = () => {    
+    if (this.state.input) {
+      if (this.state.input.length >= 44) {
+        const trimmedNote = this.state.input.slice(0, -43)
+        const newNote = {
+          title: trimmedNote += '...',
+          isToggled: false
+        }
+        this.setState({
+          notes: [newNote, ...this.state.notes],
+          input: ''
+        })
+      } else {
+          const newNote = {
+            title: this.state.input,
+            isToggled: false
+          } 
+          this.setState({
+            notes: [newNote, ...this.state.notes],
+            input: ''
+          })
+      }
     }
-    this.setState({
-      notes: [newNote, ...this.state.notes],
-      input: ''
-    })
   }
 
   handleChange = (text) => {
@@ -73,23 +87,26 @@ class App extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Title />   
-        <TextInput
-          // style={styles.input} 
-          placeholder="do it..."
-          onSubmitEditing={this.handleSubmit}
-          onChangeText={this.handleChange}
-          value={this.state.input}
-        />
-        <View style={styles.divider} />
+      <Container> 
+        <MyTitle/> 
+          <View style={styles.input}>
+            <Item rounded>
+              <Input 
+                placeholder="today I have to..."
+                onSubmitEditing={this.handleSubmit}
+                onChangeText={this.handleChange}
+                value={this.state.input}
+              />
+            </Item>
+          </View>
+           
         <List notes={this.state.notes} onToggleCompleted={this.toggleItemCompleted}/>
         <View>
           <TouchableOpacity style={styles.footer} onPress={this.removeCompleted} >
             <Text style={styles.remove}>Remove Completed Items</Text>
           </TouchableOpacity>
-        </View>
-      </View>
+        </View>        
+      </Container>
     );
   }
 }
