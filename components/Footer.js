@@ -5,21 +5,25 @@ import { Footer } from 'native-base'
 const styles = StyleSheet.create({
     footer: {
         paddingVertical: 15,
-        alignItems: 'center'
+        alignItems: 'center',
+        borderTopWidth: 1,
+        borderTopColor: 'whitesmoke'
     },
-    remove: {
-        color: 'orange'
+    remove: {        
+        marginTop: 15,
+        fontSize: 15,
+        fontWeight: 'bold',    
     }
 })
 
-const Footer = (props) => {
+const MyFooter = (props) => {
     return (
-        <Footer>
-            <TouchableOpacity>
-                <Text style={styles.remove}>Remove Completed Items</Text>
-            </TouchableOpacity>
+        <Footer>   
+            <TouchableOpacity onPress={props.removeCompleted}>
+                <Text style={styles.remove}>Remove Completed Items</Text>                            
+            </TouchableOpacity>         
         </Footer>
     )
 }
 
-export default Footer
+export default MyFooter

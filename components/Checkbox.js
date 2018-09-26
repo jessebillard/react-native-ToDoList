@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     inner: {
       flex: 1,
       margin: 2,
-      backgroundColor: 'rgba(0,0,0,0.8)',
+      backgroundColor: 'red',
     },
 })
 
@@ -19,7 +19,7 @@ const Checkbox = (props) => {
     return (
         <TouchableOpacity onPress={() => props.onToggleCompleted(props.index)}>
             <View style={styles.box}>
-                { props.isToggled && <View style={styles.inner}/> }
+                { props.isToggled && <View style={styles.inner} /> }
             </View>
         </TouchableOpacity>
     )

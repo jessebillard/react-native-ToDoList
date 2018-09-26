@@ -17,8 +17,7 @@ const MyTitle = () => {
         <Header>          
             <Body>
                 <Title style={styles.title}>Todo Listo</Title>
-            </Body>  
-            {/* <Right/>           */}
+            </Body>              
         </Header>        
     )
 }

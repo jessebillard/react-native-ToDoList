@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import MyTitle from './components/Title';
 import List from './components/List';
 import { Container, Input, Item } from 'native-base'
+import MyFooter from './components/Footer';
 
 const styles = StyleSheet.create({
   container: {
@@ -98,14 +99,9 @@ class App extends React.Component {
                 value={this.state.input}
               />
             </Item>
-          </View>
-           
+          </View>           
         <List notes={this.state.notes} onToggleCompleted={this.toggleItemCompleted}/>
-        <View>
-          <TouchableOpacity style={styles.footer} onPress={this.removeCompleted} >
-            <Text style={styles.remove}>Remove Completed Items</Text>
-          </TouchableOpacity>
-        </View>        
+        <MyFooter removeCompleted={this.removeCompleted} />
       </Container>
     );
   }
