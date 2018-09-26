@@ -31,22 +31,20 @@ const styles = StyleSheet.create({
 
 class List extends React.Component {
 
-    renderItems(item, i) {
-        return (
-            <View key={i} style={styles.item}>
-                <Text>{item}</Text>
-                <View style={styles.rightSection}>
-                    <Checkbox />
-                </View>
-            </View>
-        )
-    }
-
     render() {
-        console.log(this.props.notes)
+        console.log(this.props)
         return (
             <ScrollView>
-                {this.props.notes.map(this.renderItems)}
+                {this.props.notes.map((note, i) => {
+                    return (
+                        <View key={i} style={styles.item}>
+                            <Text>{note.title}</Text>
+                            <View style={styles.rightSection}>
+                                <Checkbox index={i} onToggleCompleted={this.props.onToggleCompleted} isToggled={note.isToggled} />
+                            </View>
+                        </View>
+                    )
+                })}
             </ScrollView>
         )
     }

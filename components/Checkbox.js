@@ -16,10 +16,11 @@ const styles = StyleSheet.create({
 })
 
 const Checkbox = (props) => {
+    console.log(props)
     return (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => props.onToggleCompleted(props.index)}>
             <View style={styles.box}>
-
+                { props.isToggled && <View style={styles.inner}/> }
             </View>
         </TouchableOpacity>
     )

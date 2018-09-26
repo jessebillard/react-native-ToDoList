@@ -35,16 +35,18 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      input: '',
-      noteTitle: '',
-      untoggledNotes: [],
-      toggledNotes: []
+      input: '',      
+      notes: [],      
     }
   }
 
   handleSubmit = () => {
+    const newNote = {
+      title: this.state.input,
+      isToggled: false
+    }
     this.setState({
-      untoggledNotes: [this.state.input, ...this.state.untoggledNotes],
+      notes: [newNote, ...this.state.notes],
       input: ''
     }, () => console.log(this.state))
   }
@@ -59,6 +61,10 @@ class App extends React.Component {
     console.log('brah')
   }
 
+  toggleItemCompleted = (index) => {
+    console.log("index", index)
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -71,7 +77,7 @@ class App extends React.Component {
           value={this.state.input}
         />
         <View style={styles.divider} />
-        <List notes={this.state.untoggledNotes}/>
+        <List notes={this.state.notes} onToggleCompleted={this.toggleItemCompleted}/>
         <View>
           <TouchableOpacity style={styles.footer} onPress={this.removeCompleted} >
             <Text style={styles.remove}>Remove Completed Items</Text>
