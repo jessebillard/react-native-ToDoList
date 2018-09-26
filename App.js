@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import Title from './components/Title';
+import List from './components/List';
 // import Footer from './components/Footer';
 // import { connect } from 'react-redux'
 // import { addNote, removeNote } from './actions/index'
@@ -35,13 +36,16 @@ class App extends React.Component {
     super()
     this.state = {
       input: '',
-      noteTitle: ''
+      noteTitle: '',
+      untoggledNotes: [],
+      toggledNotes: []
     }
   }
 
   handleSubmit = () => {
     this.setState({
-      noteTitle: this.state.input
+      untoggledNotes: [this.state.input, ...this.state.untoggledNotes],
+      input: ''
     }, () => console.log(this.state))
   }
 
@@ -52,7 +56,7 @@ class App extends React.Component {
   }
 
   removeCompleted = () => {
-    console.log('bro')
+    console.log('brah')
   }
 
   render() {
@@ -67,6 +71,7 @@ class App extends React.Component {
           value={this.state.input}
         />
         <View style={styles.divider} />
+        <List notes={this.state.untoggledNotes}/>
         <View>
           <TouchableOpacity style={styles.footer} onPress={this.removeCompleted} >
             <Text style={styles.remove}>Remove Completed Items</Text>
