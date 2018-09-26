@@ -1,7 +1,34 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import Title from './components/Title';
+// import Footer from './components/Footer';
 // import { connect } from 'react-redux'
 // import { addNote, removeNote } from './actions/index'
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  input: {
+    height: 50,
+    padding: 15,
+    margin: 25
+  },
+  divider: {
+    height: 2,
+    backgroundColor: 'whitesmoke'
+  },
+  footer: {
+    paddingVertical: 15,
+    alignItems: 'center'
+  },
+  remove: {
+      color: 'orange'
+  }
+});
 
 class App extends React.Component {
   constructor() {
@@ -24,29 +51,31 @@ class App extends React.Component {
     })
   }
 
+  removeCompleted = () => {
+    console.log('bro')
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text>Add a Note!</Text>
-        <TextInput 
+        <Title />   
+        <TextInput
+          // style={styles.input} 
           placeholder="do it..."
           onSubmitEditing={this.handleSubmit}
           onChangeText={this.handleChange}
           value={this.state.input}
         />
+        <View style={styles.divider} />
+        <View>
+          <TouchableOpacity style={styles.footer} onPress={this.removeCompleted} >
+            <Text style={styles.remove}>Remove Completed Items</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 // const mapStateToProps = (state) => {
 //   return {
